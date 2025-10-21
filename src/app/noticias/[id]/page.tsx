@@ -87,18 +87,7 @@ export default async function NoticiaPage({ params }: Props) {
                     </header>
 
                     {/* Imagem Principal */}
-                    <div className="mb-6 sm:mb-8">
-                        <div className="relative w-full h-64 sm:h-80 md:h-96 lg:h-[500px] rounded-lg overflow-hidden shadow-lg">
-                            <Image 
-                                src={noticia.foto} 
-                                alt={noticia.title}
-                                fill
-                                className="object-cover"
-                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw"
-                                priority
-                            />
-                        </div>
-                    </div>
+                 
 
                     {/* Conteúdo da Notícia */}
                     <div className="prose prose-lg max-w-none">
