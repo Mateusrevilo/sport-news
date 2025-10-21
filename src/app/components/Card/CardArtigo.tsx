@@ -1,6 +1,6 @@
 import { Artigos } from "@/types/Artigos"
 import Link from "next/link";
-import Image from "next/image";
+
 
 type Props = {
     card: Artigos
