@@ -229,31 +229,6 @@ NEXT_PUBLIC_API_URL=https://sua-api.com
 - **Acessibilidade:** Melhorias para usuários com necessidades especiais
 - **Performance:** Otimizações adicionais para carregamento mais rápido
 
-## 🚧 Funcionalidades em Desenvolvimento
-
-### 🔄 API de Notícias
-- **Integração com APIs externas:** Implementação de sistema para buscar notícias atualizadas em tempo real
-- **Fonte de dados dinâmica:** Substituição dos dados estáticos por uma API REST/GraphQL
-- **Cache inteligente:** Sistema de cache para otimizar performance e reduzir chamadas desnecessárias
-- **Webhooks:** Notificações automáticas para novas notícias
-- **Rate limiting:** Controle de requisições para evitar sobrecarga
-
-### 📄 Páginas em Construção
-- **Sistema de busca:** Funcionalidade de pesquisa avançada de notícias
-- **Filtros por categoria:** Filtros dinâmicos por esporte, data, relevância
-- **Página de perfil:** Área do usuário com preferências e histórico
-- **Sistema de comentários:** Interação da comunidade com as notícias
-- **Newsletter:** Sistema de assinatura para receber notícias por email
-- **Páginas de estatísticas:** Dashboards com dados dos esportes
-- **Seção de vídeos:** Player integrado para vídeos relacionados às notícias
-
-### 🔧 Melhorias Planejadas
-- **PWA (Progressive Web App):** Funcionalidades offline e instalação no dispositivo
-- **Dark mode:** Tema escuro para melhor experiência noturna
-- **Internacionalização (i18n):** Suporte a múltiplos idiomas
-- **Acessibilidade:** Melhorias para usuários com necessidades especiais
-- **Performance:** Otimizações adicionais para carregamento mais rápido
-
  
 ## 🛠️ Desenvolvimento
 
