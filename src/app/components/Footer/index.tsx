@@ -1,3 +1,4 @@
+import Link from "next/link"
 
 
 const Footer = () => {
@@ -14,10 +15,18 @@ const Footer = () => {
                     <div className="text-center sm:text-left">
                         <h4 className="font-semibold mb-3 sm:mb-4 text-sm sm:text-base">Links Rápidos</h4>
                         <ul className="space-y-1 sm:space-y-2 text-gray-400 text-xs sm:text-sm">
-                            <li><a href="" className="hover:text-white transition-colors">Início</a></li>
-                            <li><a href="" className="hover:text-white transition-colors">Ligas</a></li>
-                            <li><a href="" className="hover:text-white transition-colors">Campeonatos</a></li>
-                            <li><a href="" className="hover:text-white transition-colors">Sport+</a></li>
+                            <li>
+                                <Link href="/" className="hover:text-white transition-colors">Início</Link>
+                            </li>
+                            <li>
+                                <Link href="/noticias/ligas" className="hover:text-white transition-colors">Ligas</Link>
+                            </li>
+                            <li>
+                                <Link href="/noticias/campeonatos" className="hover:text-white transition-colors">Campeonatos</Link>
+                            </li>
+                            <li>
+                                <Link href="/noticias/sport" className="hover:text-white transition-colors">Sport+</Link>
+                            </li>
                         </ul>
                     </div>
                     <div className="text-center sm:text-left lg:col-span-1 sm:col-span-2 lg:col-span-1">
