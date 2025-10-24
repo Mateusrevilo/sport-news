@@ -1,6 +1,5 @@
 import { Artigos } from "@/types/Artigos"
 import Link from "next/link";
-import Image from "next/image";
 
 type Props = {
     card: Artigos
@@ -18,18 +17,9 @@ const CardArtigo = ({ card }: Props) => {
     };
 
     return (
-        <Link href={`/noticias/${card.id}`} className="block">
+        <Link href={`/artigos/${card.slug}`} className="block">
             <div className="bg-white rounded-md sm:rounded-lg shadow-md sm:shadow-lg overflow-hidden hover:shadow-lg sm:hover:shadow-xl transition-all duration-300 flex flex-col h-full hover:-translate-y-0.5 sm:hover:-translate-y-1 cursor-pointer">
-                <div className="relative h-32 sm:h-40 md:h-44 lg:h-40 xl:h-44 w-full overflow-hidden">
-                    <Image 
-                        src={card.foto} 
-                        alt={card.title}
-                        fill
-                        className="object-cover hover:scale-105 transition-transform duration-300"
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    />
-                </div>
-                <div className="p-3 sm:p-4 md:p-5 lg:p-4 xl:p-5 flex flex-col flex-grow">
+                <div className="p-4 sm:p-5 md:p-6 lg:p-5 xl:p-6 flex flex-col flex-grow">
                     <h3 className="text-sm sm:text-base md:text-lg lg:text-base xl:text-lg font-bold text-gray-900 mb-2 sm:mb-3 line-clamp-2 hover:text-blue-600 transition-colors leading-tight">
                         {card.title}
                     </h3>
