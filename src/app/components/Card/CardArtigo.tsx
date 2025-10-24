@@ -5,8 +5,6 @@ type Props = {
     card: Artigos
 }
 
-
-
 const CardArtigo = ({ card }: Props) => {
     const formatDate = (timestamp: number) => {
         return new Date(timestamp).toLocaleDateString('pt-BR', {
