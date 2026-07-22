@@ -1,4 +1,8 @@
-import { reportagens } from "@/lib/reportagens";
+import {
+    buscarArtigoPorSlug,
+    listarArtigos,
+    listarArtigosRelacionados,
+} from "@/controllers/artigoController";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
@@ -10,7 +14,7 @@ type Props = {
 
 // Gerar params estáticos para SSG
 export async function generateStaticParams() {
-    return reportagens.map((artigo) => ({
+    return listarArtigos().map((artigo) => ({
         slug: artigo.slug,
     }));
 }
@@ -18,7 +22,7 @@ export async function generateStaticParams() {
 // Gerar metadata dinâmica
 export async function generateMetadata({ params }: Props) {
     const { slug } = await params;
-    const artigo = reportagens.find(artigo => artigo.slug === slug);
+    const artigo = buscarArtigoPorSlug(slug);
     
     if (!artigo) {
         return {
@@ -35,7 +39,7 @@ export async function generateMetadata({ params }: Props) {
 
 export default async function ArtigoPage({ params }: Props) {
     const { slug } = await params;
-    const artigo = reportagens.find(artigo => artigo.slug === slug);
+    const artigo = buscarArtigoPorSlug(slug);
 
     if (!artigo) {
         notFound();
@@ -155,9 +159,7 @@ export default async function ArtigoPage({ params }: Props) {
                     </h2>
                     
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-                        {reportagens
-                            .filter(item => item.slug !== artigo.slug)
-                            .slice(0, 3)
+                        {listarArtigosRelacionados(artigo.slug)
                             .map(relacionado => (
                                 <Link 
                                     key={relacionado.id}

@@ -1,11 +1,44 @@
 "use client";
 
+import { useEffect, useState, useCallback } from "react";
 import Grid from "./components/Grid/ArtigoIndex";
-import { reportagens} from "@/lib/reportagens"
-
-
+import { artigosSeed, type Artigo } from "@/models/artigoModel";
 
 export default function Home() {
+  const [artigos, setArtigos] = useState<Artigo[]>(artigosSeed);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const carregarArtigos = useCallback(async () => {
+    setLoading(true);
+    setError(null);
+
+    try {
+      const response = await fetch(`/api/news?ts=${Date.now()}`, { cache: "no-store" });
+      if (!response.ok) {
+        throw new Error("Erro ao buscar notícias");
+      }
+
+      const dados = (await response.json()) as Artigo[];
+      setArtigos(dados.length > 0 ? dados : artigosSeed);
+    } catch (err) {
+      setArtigos(artigosSeed);
+      setError("Não foi possível atualizar as notícias. Usando conteúdo local.");
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    carregarArtigos();
+
+    const intervalo = setInterval(() => {
+      carregarArtigos();
+    }, 1000 * 60 * 5); // atualizar a cada 5 minutos
+
+    return () => clearInterval(intervalo);
+  }, [carregarArtigos]);
+
   return (
     <div className="relative">
       {/* Hero Section com Vídeo de Fundo */}
@@ -56,8 +89,26 @@ export default function Home() {
       {/* Seção de Notícias */}
       <section id="noticias-section" className="bg-gray-50">
         <div className="container mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-8 sm:py-12 md:py-16">
-          
-          <Grid artigos={reportagens} />
+          <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <h2 className="text-3xl font-bold text-gray-900">Últimas notícias</h2>
+              <p className="text-gray-600 mt-2">Atualizadas pela API de notícias em tempo real.</p>
+            </div>
+            <div className="flex items-center gap-3">
+              <button
+                type="button"
+                onClick={carregarArtigos}
+                className="inline-flex items-center justify-center rounded-lg bg-blue-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-blue-700"
+              >
+                {loading ? "Atualizando..." : "Atualizar notícias"}
+              </button>
+              {error ? (
+                <span className="text-sm text-red-600">{error}</span>
+              ) : null}
+            </div>
+          </div>
+
+          <Grid artigos={artigos} />
         </div>
       </section>
     </div>

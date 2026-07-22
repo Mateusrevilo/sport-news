@@ -1,253 +1,99 @@
 # 🏆 Sports News - Portal de Notícias Esportivas
 
-Um portal moderno de notícias esportivas construído com Next.js 14, TypeScript e Tailwind CSS, oferecendo uma experiência responsiva e otimizada para todos os dispositivos.
+Um portal moderno de notícias esportivas construído com Next.js 15, TypeScript e Tailwind CSS, com arquitetura inspirada em MVC, integração com API de notícias e páginas temáticas para ligas e campeonatos.
 
-## 🚀 Tecnologias Utilizadas
+## 🚀 O que foi implementado
 
-- **Framework:** Next.js 14+ (App Router)
+### 🧠 Arquitetura
+- Estrutura organizada com separação entre modelos, controladores e serviços.
+- Lógica de notícias centralizada para facilitar manutenção e expansão.
+- Rotas de API internas consumidas pelo frontend com Next.js App Router.
+
+### 📰 Integração com API de notícias
+- Consumo de notícias externas via News API.
+- Filtro para exibir apenas conteúdos relacionados a esportes.
+- Fallback para conteúdo local quando a API não retorna dados.
+- Endpoint interno em `/api/news` para abastecer a interface.
+
+### 🏠 Página inicial
+- Hero section com vídeo de fundo e CTA para visualizar notícias.
+- Grid responsivo de notícias com cards interativos.
+- Atualização manual das notícias via botão de refresh.
+
+### 🏅 Páginas de categorias
+- Página de ligas com seleção interativa por clube/competição.
+- Página de campeonatos com layout dedicado.
+- Páginas temáticas para explorar notícias por contexto esportivo.
+
+### 🎨 Experiência visual
+- Interface responsiva e moderna.
+- Estilização com Tailwind CSS.
+- Cards com melhor hierarquia visual e destaque para categorias.
+
+## 🛠️ Tecnologias utilizadas
+
+- **Framework:** Next.js 15
 - **Linguagem:** TypeScript
 - **Estilização:** Tailwind CSS
-- **Imagens:** Next.js Image (otimização automática)
-- **Ícones:** SVG inline
-- **Responsividade:** Mobile-first design
+- **API:** News API + Axios
+- **Arquitetura:** MVC simplificada em pastas `models`, `controllers` e `services`
 
-## 📁 Estrutura do Projeto
+## 📁 Estrutura do projeto
 
-```
-my-app/
-├── src/
-│   ├── app/
-│   │   ├── components/
-│   │   │   ├── Card/
-│   │   │   │   └── CardArtigo.tsx      # Componente de card de notícia
-│   │   │   ├── Footer/
-│   │   │   │   └── index.tsx           # Rodapé do site
-│   │   │   ├── Grid/
-│   │   │   │   └── ArtigoIndex.tsx     # Grid responsivo de notícias
-│   │   │   ├── Header/
-│   │   │   │   └── index.tsx           # Cabeçalho com navegação
-│   │   │   └── Title/
-│   │   │       └── index.tsx           # Componente de título
-│   │   ├── noticias/
-│   │   │   ├── [id]/
-│   │   │   │   └── page.tsx            # Página dinâmica de notícia
-│   │   │   ├── ligas/
-│   │   │   │   └── page.tsx            # Página de ligas
-│   │   │   ├── campeonatos/
-│   │   │   │   └── page.tsx            # Página de campeonatos
-│   │   │   └── sport/
-│   │   │       └── page.tsx            # Página Sport+
-│   │   ├── globals.css                 # Estilos globais
-│   │   ├── layout.tsx                  # Layout principal
-│   │   └── page.tsx                    # Página inicial
-│   ├── lib/
-│   │   └── reportagens.js              # Dados das notícias
-│   └── types/
-│       └── Artigos.ts                  # Tipos TypeScript
-├── public/
-│   └── videos/
-│       └── hero-video.mp4             # Vídeo de fundo da home
-└── README.md
+```text
+src/
+├── app/
+│   ├── api/
+│   │   └── news/
+│   │       └── route.ts
+│   ├── components/
+│   ├── noticias/
+│   ├── page.tsx
+│   └── layout.tsx
+├── controllers/
+├── models/
+├── services/
+├── types/
+└── public/videos
 ```
 
-## 🎯 Funcionalidades
-
-### 🏠 Página Inicial
-- **Hero Section:** Vídeo de fundo com overlay e conteúdo sobreposto
-- **Título dinâmico:** "As Melhores Notícias do Mundo dos Sports"
-- **Call-to-action:** Botão "Ver Notícias"
-- **Indicador de scroll:** Animação para indicar mais conteúdo
-- **Grid de notícias:** Cards responsivos com imagens otimizadas
-
-### 📰 Sistema de Notícias
-- **Cards clicáveis:** Navegação para páginas individuais
-- **Imagens reais:** URLs do Unsplash com alta qualidade
-- **Responsividade:** Adaptação perfeita a todas as telas
-- **Hover effects:** Animações suaves e profissionais
-
-### 📄 Páginas de Notícia Individual
-- **Layout profissional:** Design tipo artigo
-- **Breadcrumbs:** Navegação "Início > Notícias > Título"
-- **Imagem principal:** Destaque com otimização
-- **Conteúdo expandido:** Texto completo com citações
-- **Notícias relacionadas:** Grid com 3 notícias similares
-- **Navegação:** Botões "Voltar" e "Compartilhar"
-
-### 🧭 Navegação
-- **Header responsivo:** Menu adaptativo
-- **Links funcionais:** Rotas para todas as seções
-- **Sticky navigation:** Header fixo ao rolar
-- **Menu mobile:** Botão hamburger para dispositivos pequenos
-
-### 📱 Páginas de Categoria
-- **Ligas:** Notícias sobre ligas esportivas
-- **Campeonatos:** Cobertura de campeonatos
-- **Sport+:** Conteúdo premium com recursos especiais
-
-## 🎨 Design System
-
-### 🎨 Cores
-- **Primária:** Azul (blue-600 a blue-800)
-- **Secundária:** Verde (green-600 a green-800)
-- **Premium:** Roxo (purple-600 a purple-800)
-- **Neutras:** Cinza (gray-50 a gray-900)
-
-### 📐 Breakpoints
-- **Mobile:** < 640px
-- **Tablet:** 640px - 1024px
-- **Desktop:** 1024px - 1280px
-- **Large:** 1280px - 1536px
-- **XL:** > 1536px
-
-### 🖼️ Imagens
-- **Fonte:** Unsplash (alta qualidade)
-- **Otimização:** Next.js Image component
-- **Formato:** JPG otimizado
-- **Resolução:** 800x600 pixels
-- **Lazy loading:** Automático
-
-## 🚀 Como Executar
+## ▶️ Como executar
 
 ### Pré-requisitos
-- Node.js 18+ 
-- npm ou yarn
+- Node.js 18+
+- npm
 
 ### Instalação
 ```bash
-# Clone o repositório
-git clone [url-do-repositorio]
-
-# Entre na pasta do projeto
-cd my-app
-
-# Instale as dependências
+git clone <url-do-repositorio>
+cd sport-news
 npm install
-
-# Execute o servidor de desenvolvimento
 npm run dev
 ```
 
-### Scripts Disponíveis
+### Scripts disponíveis
 ```bash
-# Desenvolvimento
 npm run dev
-
-# Build de produção
 npm run build
-
-# Iniciar servidor de produção
-npm start
-
-# Linting
+npm run start
 npm run lint
 ```
 
-## 📊 Performance
+## 🌐 Variáveis de ambiente
 
-### ✅ Otimizações Implementadas
-- **Next.js Image:** Carregamento otimizado de imagens
-- **Lazy loading:** Imagens carregadas sob demanda
-- **Code splitting:** JavaScript dividido por rota
-- **Static generation:** Páginas pré-renderizadas
-- **Responsive images:** Diferentes tamanhos para cada dispositivo
+Crie um arquivo `.env` com:
 
-### 📈 Métricas
-- **First Load JS:** ~122 kB
-- **Build time:** ~16.8s
-- **Lighthouse Score:** 90+ (estimado)
-
-## 🔧 Configurações
-
-### 📁 Arquivos de Configuração
-- `next.config.ts` - Configurações do Next.js
-- `tailwind.config.js` - Configurações do Tailwind
-- `tsconfig.json` - Configurações do TypeScript
-- `eslint.config.mjs` - Configurações do ESLint
-
-### 🌐 Variáveis de Ambiente
 ```env
-# Adicione ao .env.local se necessário
-NEXT_PUBLIC_API_URL=https://sua-api.com
+NEWS_API_KEY=sua_chave_da_news_api
 ```
 
-## 📱 Responsividade
+## ✅ Próximos passos sugeridos
 
-### 📱 Mobile (< 640px)
-- Grid: 1 coluna
-- Cards: Compactos
-- Navegação: Menu hamburger
-- Texto: Tamanhos reduzidos
+- Adicionar busca por palavra-chave.
+- Implementar cache para reduzir chamadas à API.
+- Criar páginas detalhadas de cada notícia com conteúdo completo.
+- Integrar mais fontes de notícias esportivas.
 
-### 💻 Tablet (640px - 1024px)
-- Grid: 2 colunas
-- Cards: Tamanho médio
-- Navegação: Menu horizontal
-- Texto: Tamanhos intermediários
-
-### 🖥️ Desktop (> 1024px)
-- Grid: 3-4 colunas
-- Cards: Tamanho completo
-- Navegação: Menu completo
-- Texto: Tamanhos grandes
-
-## 🎯 SEO
-
-### 🔍 Otimizações
-- **Meta tags:** Títulos e descrições únicos
-- **Structured data:** Dados estruturados
-- **Alt text:** Imagens com descrições
-- **URLs semânticas:** Rotas amigáveis
-- **Sitemap:** Geração automática
-
-### 📊 Analytics
-- **Google Analytics:** Preparado para integração
-- **Search Console:** Configuração recomendada
-- **Core Web Vitals:** Otimizado
-
-## 🚧 Funcionalidades em Desenvolvimento
-
-### 🔄 API de Notícias
-- **Integração com APIs externas:** Implementação de sistema para buscar notícias atualizadas em tempo real
-- **Fonte de dados dinâmica:** Substituição dos dados estáticos por uma API REST/GraphQL
-- **Cache inteligente:** Sistema de cache para otimizar performance e reduzir chamadas desnecessárias
-- **Webhooks:** Notificações automáticas para novas notícias
-- **Rate limiting:** Controle de requisições para evitar sobrecarga
-
-### 📄 Páginas em Construção
-- **Sistema de busca:** Funcionalidade de pesquisa avançada de notícias
-- **Filtros por categoria:** Filtros dinâmicos por esporte, data, relevância
-- **Página de perfil:** Área do usuário com preferências e histórico
-- **Sistema de comentários:** Interação da comunidade com as notícias
-- **Newsletter:** Sistema de assinatura para receber notícias por email
-- **Páginas de estatísticas:** Dashboards com dados dos esportes
-- **Seção de vídeos:** Player integrado para vídeos relacionados às notícias
-
-### 🔧 Melhorias Planejadas
-- **PWA (Progressive Web App):** Funcionalidades offline e instalação no dispositivo
-- **Dark mode:** Tema escuro para melhor experiência noturna
-- **Internacionalização (i18n):** Suporte a múltiplos idiomas
-- **Acessibilidade:** Melhorias para usuários com necessidades especiais
-- **Performance:** Otimizações adicionais para carregamento mais rápido
-
- 
-## 🛠️ Desenvolvimento
-
-### 📝 Convenções
-- **Componentes:** PascalCase
-- **Arquivos:** kebab-case
-- **Props:** camelCase
-- **CSS:** Tailwind classes
-
-### 🧪 Testes
-```bash
-# Executar testes (quando implementados)
-npm test
-
-# Testes de integração
-npm run test:integration
-```
-
-## 📦 Deploy
 
 ### 🚀 Vercel (Recomendado)
 ```bash

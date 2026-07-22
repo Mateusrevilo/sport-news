@@ -1,6 +1,8 @@
-import { reportagens } from "@/lib/reportagens";
+import {
+    buscarArtigoPorId,
+    listarArtigosRelacionados,
+} from "@/controllers/artigoController";
 import Link from "next/link";
-import Image from "next/image";
 import { notFound } from "next/navigation";
 
 type Props = {
@@ -11,7 +13,7 @@ type Props = {
 
 export async function generateMetadata({ params }: Props) {
     const { id } = await params;
-    const noticia = reportagens.find(noticia => noticia.id === Number(id));
+    const noticia = buscarArtigoPorId(id);
     
     if (!noticia) {
         return {
@@ -28,7 +30,7 @@ export async function generateMetadata({ params }: Props) {
 
 export default async function NoticiaPage({ params }: Props) {
     const { id } = await params;
-    const noticia = reportagens.find(noticia => noticia.id === Number(id));
+    const noticia = buscarArtigoPorId(id);
 
     if (!noticia) {
         notFound();
@@ -143,9 +145,7 @@ export default async function NoticiaPage({ params }: Props) {
                     </h2>
                     
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-                        {reportagens
-                            .filter(item => item.id !== noticia.id)
-                            .slice(0, 3)
+                        {listarArtigosRelacionados(noticia.slug)
                             .map(relacionada => (
                                 <Link 
                                     key={relacionada.id}
